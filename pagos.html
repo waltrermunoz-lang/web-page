@@ -1,0 +1,164 @@
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pasarela de Pago | SabbyShopp</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <!-- Vista principal del checkout o finalizacion de compra -->
+        <main class="checkout-page">
+            <section class="checkout-shell">
+                <!-- Encabezado de la pasarela con titulo y regreso al catalogo -->
+                <header class="checkout-header">
+                    <div>
+                        <span class="eyebrow">Pasarela de pago</span>
+                        <h1>Finalizar compra</h1>
+                        <p>Selecciona tu metodo de pago y revisa el resumen antes de confirmar.</p>
+                    </div>
+
+                    <a href="index.html" class="back-link">Volver al catalogo</a>
+                </header>
+
+                <!-- Layout de dos columnas: formulario de pago y resumen del pedido -->
+                <div class="checkout-layout">
+                    <!-- Columna izquierda: seleccion del metodo y captura de datos -->
+                    <section class="payment-panel">
+                        <div class="panel-card">
+                            <div class="panel-head">
+                                <span class="eyebrow">Metodo</span>
+                                <h2>Como quieres pagar</h2>
+                            </div>
+
+                            <!-- Opciones de pago disponibles en esta demo -->
+                            <div class="payment-methods">
+                                <label class="method-card">
+                                    <input type="radio" name="paymentMethod" value="mastercard" checked>
+                                    <div>
+                                        <strong>Mastercard</strong>
+                                        <span>Tarjeta internacional</span>
+                                    </div>
+                                </label>
+
+                                <label class="method-card">
+                                    <input type="radio" name="paymentMethod" value="debit-credit">
+                                    <div>
+                                        <strong>Debito / Credito</strong>
+                                        <span>Visa, Maestro y similares</span>
+                                    </div>
+                                </label>
+
+                                <label class="method-card">
+                                    <input type="radio" name="paymentMethod" value="nequi">
+                                    <div>
+                                        <strong>Nequi</strong>
+                                        <span>Pago con numero celular</span>
+                                    </div>
+                                </label>
+
+                                <label class="method-card">
+                                    <input type="radio" name="paymentMethod" value="nu">
+                                    <div>
+                                        <strong>Nu Bank</strong>
+                                        <span>Tarjeta Nu o cuenta digital</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Formulario cuyos campos cambian segun el metodo elegido -->
+                        <form id="paymentForm" class="panel-card payment-form">
+                            <div class="panel-head">
+                                <span class="eyebrow">Datos</span>
+                                <h2>Informacion de pago</h2>
+                            </div>
+
+                            <!-- Campos tradicionales para tarjeta -->
+                            <div id="cardFields" class="form-grid">
+                                <label class="field field--full">
+                                    <span>Nombre del titular</span>
+                                    <input type="text" id="cardName" placeholder="Como aparece en la tarjeta">
+                                </label>
+
+                                <label class="field field--full">
+                                    <span>Numero de tarjeta</span>
+                                    <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                                </label>
+
+                                <label class="field">
+                                    <span>Vencimiento</span>
+                                    <input type="text" id="cardExpiry" placeholder="MM/AA" maxlength="5">
+                                </label>
+
+                                <label class="field">
+                                    <span>CVV</span>
+                                    <input type="text" id="cardCvv" placeholder="123" maxlength="4">
+                                </label>
+
+                                <label class="field field--full">
+                                    <span>Tipo de pago</span>
+                                    <select id="cardType">
+                                        <option value="credito">Credito</option>
+                                        <option value="debito">Debito</option>
+                                    </select>
+                                </label>
+                            </div>
+
+                            <!-- Campos para billetera digital. Se muestran solo cuando aplica -->
+                            <div id="walletFields" class="form-grid hidden">
+                                <label class="field field--full">
+                                    <span>Numero asociado</span>
+                                    <input type="text" id="walletPhone" placeholder="3001234567">
+                                </label>
+
+                                <label class="field field--full">
+                                    <span>Documento del titular</span>
+                                    <input type="text" id="walletDocument" placeholder="Cedula o identificacion">
+                                </label>
+                            </div>
+
+                            <div class="security-note">
+                                <strong>Pago seguro demo</strong>
+                                <span>Esta pasarela es visual y no procesa transacciones reales.</span>
+                            </div>
+
+                            <button type="submit" class="primary-button">Confirmar pago</button>
+                            <p id="paymentMessage" class="payment-message" aria-live="polite"></p>
+                        </form>
+                    </section>
+
+                    <!-- Columna derecha: resumen final de la compra -->
+                    <aside class="summary-panel">
+                        <div class="panel-card sticky-card">
+                            <div class="panel-head">
+                                <span class="eyebrow">Resumen</span>
+                                <h2>Tu pedido</h2>
+                            </div>
+
+                            <div id="orderItems" class="order-items"></div>
+
+                            <div class="summary-totals">
+                                <div>
+                                    <span>Subtotal</span>
+                                    <strong id="subtotalValue">$000.000</strong>
+                                </div>
+                                <div>
+                                    <span>Envio</span>
+                                    <strong id="shippingValue">$12.000</strong>
+                                </div>
+                                <div class="summary-total">
+                                    <span>Total</span>
+                                    <strong id="totalValue">$000.000</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+        </main>
+
+        <!-- Script que renderiza el pedido, valida el pago y limpia el carrito -->
+        <script src="pagos.js"></script>
+    </body>
+    </html>

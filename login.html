@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body class="login-page">
+    <!-- Estructura principal de la pantalla de autenticacion -->
+    <main class="login-wrapper">
+        <!-- Marca visual del proyecto -->
+        <div class="login-brand">
+            <div class="login-brand__logo">S</div>
+            <h1 class="login-brand__name">ZSA-STORE</h1>
+        </div>
+
+        <!-- Tarjeta central con formularios de login y registro -->
+        <section class="auth-card">
+            <div class="auth-card__glow auth-card__glow--top"></div>
+            <div class="auth-card__glow auth-card__glow--bottom"></div>
+
+            <div class="auth-card__header">
+                <div class="auth-dot-group">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+            <!-- Botones para alternar entre iniciar sesion y registrarse -->
+            <div class="auth-tabs">
+                <button type="button" class="auth-tab active" id="showLogin">Login</button>
+                <button type="button" class="auth-tab" id="showRegister">Registro</button>
+            </div>
+
+            <!-- Formulario de inicio de sesion -->
+            <form id="loginForm" class="auth-form">
+                <label class="field">
+                    <span>Usuario</span>
+                    <input type="text" id="loginUser" placeholder="Ingresa tu usuario" required>
+                </label>
+
+                <label class="field">
+                    <span>Contrasena</span>
+                    <input type="password" id="loginPass" placeholder="Ingresa tu contrasena" required>
+                </label>
+
+                <button type="submit" class="primary-button">Entrar</button>
+            </form>
+
+            <!-- Formulario de registro. Empieza oculto y se muestra con JavaScript -->
+            <form id="registerForm" class="auth-form hidden">
+                <label class="field">
+                    <span>Nombre</span>
+                    <input type="text" id="registerName" placeholder="Tu nombre" required>
+                </label>
+
+                <label class="field">
+                    <span>Usuario</span>
+                    <input type="text" id="registerUser" placeholder="Crea un usuario" required>
+                </label>
+
+                <label class="field">
+                    <span>Contrasena</span>
+                    <input type="password" id="registerPass" placeholder="Crea una contrasena" required>
+                </label>
+
+                <label class="field">
+                    <span>Confirmar contrasena</span>
+                    <input type="password" id="registerPassConfirm" placeholder="Repite la contrasena" required>
+                </label>
+
+                <button type="submit" class="primary-button">Crear cuenta</button>
+            </form>
+
+            <!-- Espacio para mostrar errores o mensajes de exito -->
+            <p id="authMessage" class="auth-message" aria-live="polite"></p>
+        </section>
+    </main>
+
+    <!-- Script que controla registro, login y persistencia en localStorage -->
+    <script src="login.js"></script>
+</body>
+</html>

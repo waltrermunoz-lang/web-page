@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZSA-STORE.com</title>
+    <meta
+        name="description"
+        content="ZSA-STORE es una experiencia moderna de ecommerce para explorar productos en un catalogo visual."
+    >
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Contenedor principal de toda la vista del catalogo -->
+    <div class="page-shell">
+        <!-- Encabezado con informacion del usuario, acceso al carrito y cierre de sesion -->
+        <header class="site-header">
+            <div class="header-actions">
+                <div class="user-pill">
+                    <span class="user-pill__label">Sesion activa</span>
+                    <strong id="userName">Usuario</strong>
+                </div>
+
+                <button type="button" id="openCart" class="cart-button" aria-expanded="false" aria-controls="cartDrawer">
+                    <span>Carrito</span>
+                    <strong id="cartCount">0</strong>
+                </button>
+
+                <button type="button" id="logoutButton" class="ghost-button">Cerrar sesion</button>
+            </div>
+        </header>
+
+        <!-- Zona principal: presentacion de la tienda y listado de productos -->
+        <main class="main-layout">
+            <!-- Tarjeta de bienvenida con metricas generales del catalogo -->
+            <section class="hero-card">
+                <div>
+                    <span class="section-eyebrow">Tienda</span>
+                    <h2>Explorar productos</h2>
+                   
+                </div>
+
+                <div class="hero-metrics">
+                    <article>
+                        <strong id="heroProducts">20</strong>
+                        <span>Productos</span>
+                    </article>
+                    <article>
+                        <strong id="heroCategories">1</strong>
+                        <span>Categorias</span>
+                    </article>
+                    <article>
+                        <strong>Ofertas</strong>
+                        <span>a diario</span>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Panel del catalogo con filtros y tarjetas de productos -->
+            <section class="catalog-panel">
+                <div class="catalog-toolbar">
+                    <div>
+                        <span class="section-eyebrow">Catalogo</span>
+                        <h2>Productos disponibles</h2>
+                        <p id="results">20 productos cargados en tarjetas HTML.</p>
+                    </div>
+
+                    <form class="filters" id="filtersForm">
+                        <label class="field">
+                            <span>Buscar</span>
+                            <input type="search" id="search" placeholder="Ej. mochila, chaqueta, monitor">
+                        </label>
+
+                        <label class="field">
+                            <span>Categoria</span>
+                            <select id="category">
+                                <option value="all">Todas</option>
+                            </select>
+                        </label>
+                    </form>
+                </div>
+
+                <!-- Mensaje dinamico que informa al usuario sobre el estado de la busqueda -->
+                <div id="statusMessage" class="status-message" aria-live="polite"></div>
+
+                <!-- Grid estatico de productos. JavaScript solo lee estas tarjetas y las hace interactivas -->
+                <div class="product-grid">
+                    <div class="card">
+                        <span class="badge">Oferta</span>
+                        <img src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png" alt="Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops">
+                        <div class="card-body">
+                            <center>
+                                <div class="card-title">Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops</div>
+                                <div>Precio: $109.000</div>
+                                <input class="card-price" type="hidden" value="109.000">
+                                <button class="btn btn-agregar-carrito">Agregar al carrito</button>
+                            </center>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <span class="badge">Oferta</span>
+                        <img src="https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_t.png" alt="Mens Casual Premium Slim Fit T-Shirts">
+                        <div class="card-body">
+                            <center>
+                                <div class="card-title">Mens Casual Premium Slim Fit T-Shirts</div>
+                                <div>Precio: $220.000</div>
+                                <input class="card-price" type="hidden" value="220.000">
+                                <button class="btn btn-agregar-carrito">Agregar al carrito</button>
+                            </center>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <span class="badge">Oferta</span>
+                        <img src="https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_t.png" alt="Mens Cotton Jacket">
+                        <div class="card-body">
+                            <center>
+                                <div class="card-title">Mens Cotton Jacket</div>
+                                <div>Precio: $505.000</div>
+                                <input class="card-price" type="hidden" value="505.000">
+                                <button class="btn btn-agregar-carrito">Agregar al carrito</button>
+                            </center>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <span class="badge">Oferta</span>
+                        <img src="https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_t.png" alt="Mens Casual Slim Fit">
+                        <div class="card-body">
+                            <center>
+                                <div class="card-title">Mens Casual Slim Fit</div>
+                                <div>Precio: $150.000</div>
+                                <input class="card-price" type="hidden" value="150.000">
+                                <button class="btn btn-agregar-carrito">Agregar al carrito</button>
+                            </center>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <span class="badge">Oferta</span>
+                        <img src="https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_t.png" alt="John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet">
+                        <div class="card-body">
+                            <center>
+                                <div class="card-title">John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet</div>
+                                <div>Precio: $120.000</div>
+                                <input class="card-price" type="hidden" value="120.000">
+                                <button class="btn btn-agregar-carrito">Agregar al carrito</button>
+                            </center>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <span class="badge">Oferta</span>
+                        <img src="https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_t.png" alt="Solid Gold Petite Micropave">
+                        <div class="card-body">
+                            <center>
+                                <div class="card-title">Solid Gold Petite Micropave</div>
+                                <div>Precio: $168.000</div>
+                                <input class="card-price" type="hidden" value="168.000">
+                                <button class="btn btn-agregar-carrito">Agregar al carrito</button>
+                            </center>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <span class="badge">Oferta</span>
+                        <img src="https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_t.png" alt="White Gold Plated Princess">
+                        <div class="card-body">
+                            <center>
+                                <div class="card-title">White Gold Plated Princess</div>
+                                <div>Precio: $90.000</div>
+                                <input class="card-price" type="hidden" value="90.000">
+                                <button class="btn btn-agregar-carrito">Agregar al carrito</button>
+                            </center>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <span class="badge">Oferta</span>
+                        <img src="https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_t.png" alt="Pierced Owl Rose Gold Plated Stainless Steel Double">
+                        <div class="card-body">
+                            <center>
+                                <div class="card-title">Pierced Owl Rose Gold Plated Stainless Steel Double</div>
+                                <div>Precio: $100.000</div>
+                                <input class="card-price" type="hidden" value="100.000">
+                                <button class="btn btn-agregar-carrito">Agregar al carrito</button>
+                            </center>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <span class="badge">Oferta</span>
+                        <img src="https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_t.png" alt="WD 2TB Elements Portable External Hard Drive - USB 3.0">
+                        <div class="card-body">
+                            <center>
+                                <div class="card-title">WD 2TB Elements Portable External Hard Drive - USB 3.0</div>
+                                <div>Precio: $640.000</div>
+                                <input class="card-price" type="hidden" value="640.000">
+                                <button class="btn btn-agregar-carrito">Agregar al carrito</button>
+                            </center>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <span class="badge">Oferta</span>
+                        <img src="https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_t.png" alt="SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s">
+                        <div class="card-body">
+                            <center>
+                                <div class="card-title">SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s</div>
+                                <div>Precio: $109.000</div>
+                                <input class="card-price" type="hidden" value="109.000">
+                                <button class="btn btn-agregar-carrito">Agregar al carrito</button>
+                            </center>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <span class="badge">Oferta</span>
+                        <img src="https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_t.png" alt="Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Boost SATA III 2.5">
+                        <div class="card-body">
+                            <center>
+                                <div class="card-title">Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Boost SATA III 2.5</div>
+                                <div>Precio: $109.000</div>
+                                <input class="card-price" type="hidden" value="109.000">
+                                <button class="btn btn-agregar-carrito">Agregar al carrito</button>
+                            </center>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <span class="badge">Oferta</span>
+                        <img src="https://fakestoreapi.com/img/61mtL65D4cL._AC_SX679_t.png" alt="WD 4TB Gaming Drive Works with Playstation 4 Portable External Hard Drive">
+                        <div class="card-body">
+                            <center>
+                                <div class="card-title">WD 4TB Gaming Drive Works with Playstation 4 Portable External Hard Drive</div>
+                                <div>Precio: $114.000</div>
+                                <input class="card-price" type="hidden" value="114.000">
+                                <button class="btn btn-agregar-carrito">Agregar al carrito</button>
+                            </center>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <span class="badge">Oferta</span>
+                        <img src="https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_t.png" alt="Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-Thin">
+                        <div class="card-body">
+                            <center>
+                                <div class="card-title">Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-Thin</div>
+                                <div>Precio: $599.000</div>
+                                <input class="card-price" type="hidden" value="599.000">
+                                <button class="btn btn-agregar-carrito">Agregar al carrito</button>
+                            </center>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <span class="badge">Oferta</span>
+                        <img src="https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_t.png" alt="Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor">
+                        <div class="card-body">
+                            <center>
+                                <div class="card-title">Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor</div>
+                                <div>Precio: $999.999</div>
+                                <input class="card-price" type="hidden" value="999.999">
+                                <button class="btn btn-agregar-carrito">Agregar al carrito</button>
+                            </center>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <span class="badge">Oferta</span>
+                        <img src="https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_t.png" alt="BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats">
+                        <div class="card-body">
+                            <center>
+                                <div class="card-title">BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats</div>
+                                <div>Precio: $560.000</div>
+                                <input class="card-price" type="hidden" value="560.000">
+                                <button class="btn btn-agregar-carrito">Agregar al carrito</button>
+                            </center>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <span class="badge">Oferta</span>
+                        <img src="https://fakestoreapi.com/img/81XH0e8fefL._AC_UY879_t.png" alt="Lock and Love Women's Removable Hooded Faux Leather Moto Biker Jacket">
+                        <div class="card-body">
+                            <center>
+                                <div class="card-title">Lock and Love Women's Removable Hooded Faux Leather Moto Biker Jacket</div>
+                                <div>Precio: $290.000</div>
+                                <input class="card-price" type="hidden" value="290.000">
+                                <button class="btn btn-agregar-carrito">Agregar al carrito</button>
+                            </center>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <span class="badge">Oferta</span>
+                        <img src="https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2t.png" alt="Rain Jacket Women Windbreaker Striped Climbing Raincoats">
+                        <div class="card-body">
+                            <center>
+                                <div class="card-title">Rain Jacket Women Windbreaker Striped Climbing Raincoats</div>
+                                <div>Precio: $390.000</div>
+                                <input class="card-price" type="hidden" value="390.000">
+                                <button class="btn btn-agregar-carrito">Agregar al carrito</button>
+                            </center>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <span class="badge">Oferta</span>
+                        <img src="https://fakestoreapi.com/img/71z3kpMAYsL._AC_UY879_t.png" alt="MBJ Women's Solid Short Sleeve Boat Neck V">
+                        <div class="card-body">
+                            <center>
+                                <div class="card-title">MBJ Women's Solid Short Sleeve Boat Neck V</div>
+                                <div>Precio: $90.000</div>
+                                <input class="card-price" type="hidden" value="90.000">
+                                <button class="btn btn-agregar-carrito">Agregar al carrito</button>
+                            </center>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <span class="badge">Oferta</span>
+                        <img src="https://fakestoreapi.com/img/51eg55uWmdL._AC_UX679_t.png" alt="Opna Women's Short Sleeve Moisture">
+                        <div class="card-body">
+                            <center>
+                                <div class="card-title">Opna Women's Short Sleeve Moisture</div>
+                                <div>Precio: $70.000</div>
+                                <input class="card-price" type="hidden" value="70.000">
+                                <button class="btn btn-agregar-carrito">Agregar al carrito</button>
+                            </center>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <span class="badge">Oferta</span>
+                        <img src="https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_t.png" alt="DANVOUY Womens T Shirt Casual Cotton Short">
+                        <div class="card-body">
+                            <center>
+                                <div class="card-title">DANVOUY Womens T Shirt Casual Cotton Short</div>
+                                <div>Precio: $120.000</div>
+                                <input class="card-price" type="hidden" value="120.000">
+                                <button class="btn btn-agregar-carrito">Agregar al carrito</button>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Panel lateral del carrito. Se abre y se cierra con JavaScript -->
+    <aside id="cartDrawer" class="cart-drawer" aria-hidden="true" aria-labelledby="cartTitle">
+        <div class="cart-drawer__overlay" id="cartOverlay"></div>
+        <div class="cart-drawer__panel">
+            <div class="cart-drawer__header">
+                <div>
+                    <span class="section-eyebrow">Resumen</span>
+                    <h2 id="cartTitle">Tu carrito</h2>
+                </div>
+                <button type="button" id="closeCart" class="icon-button" aria-label="Cerrar carrito">x</button>
+            </div>
+
+            <div id="cartItems" class="cart-items"></div>
+
+            <div class="cart-summary">
+                <div>
+                    <span>Total estimado</span>
+                    <strong id="cartTotal">$0.00</strong>
+                </div>
+                <button type="button" id="pagosButton" class="primary-button">Continuar compra</button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Script principal del catalogo, filtros, carrito y navegacion -->
+    <script src="script.js"></script>
+
+</body>
+</html>
